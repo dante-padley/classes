@@ -1,12 +1,12 @@
-#include "person.cpp"
 #include <fstream>
 #include <string>
 #include <iostream>
+#include "person.cpp"
 using namespace std;
 
 
-void readData(Person employees[], int size){
-    fstream fs;
+int readData(Person employees[], int size){
+    ifstream fs;
     fs.open("input.txt");
 
     int i = 0;
@@ -23,16 +23,21 @@ void readData(Person employees[], int size){
         i++;
     }
     fs.close();
+    return i;
 }
 
 
 void writeData(Person employees[], int size){
-    fstream fs;
+    ofstream fs;
     fs.open("output.txt");
 
-    for (int i; i < size; i++){
-        string name = employee[i].fullName();
-        cout << name << endl;
+    for (int k = 0; k < size; k++){
+
+        string name = employees[k].fullName();
+        float total = employees[k].totalPay();
+
+        fs << name << " " << total << endl;
+       
     }
     fs.close();
 }
@@ -42,7 +47,7 @@ int main(){
     int size = 20;
     Person employees [size];
 
-    readData(employees, size);
-    writeData(employees, size);
+    int arrSize = readData(employees, size);
+    writeData(employees, arrSize);
     
 }

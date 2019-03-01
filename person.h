@@ -23,5 +23,5 @@ public:
     float getHoursWorked();
     float totalPay();
     string fullName();
-};
+    };
 #endif // end person.h
