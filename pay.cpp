@@ -1,33 +1,33 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <vector>
 #include "person.cpp"
 using namespace std;
 
-
-int readData(Person employees[], int size){
+//-----
+//readData now accepts the address of a vector and assigns values
+//to vector members with emplace_back
+//-----
+int readData(vector<Person> &employees){
     ifstream fs;
     fs.open("input.txt");
-
-    int i = 0;
     while(!fs.eof()){
         string fName, lName;
         float rate, hours;
 
         fs >> fName >> lName >> rate >> hours;
 
-        employees[i].setFirstName(fName);
-        employees[i].setLastName(lName);
-        employees[i].setPayRate(rate);
-        employees[i].setHoursWorked(hours);
-        i++;
+        employees.emplace_back(fName, lName, rate, hours);
     }
     fs.close();
-    return i;
+    return employees.size();
 }
 
-
-void writeData(Person employees[], int size){
+//-----
+//writeData now accepts the vector address
+//-----
+void writeData(vector<Person> &employees, int size){
     ofstream fs;
     fs.open("output.txt");
 
@@ -35,7 +35,6 @@ void writeData(Person employees[], int size){
 
         string name = employees[k].fullName();
         float total = employees[k].totalPay();
-
         fs << name << " " << total << endl;
        
     }
@@ -44,10 +43,12 @@ void writeData(Person employees[], int size){
 
 
 int main(){
-    int size = 20;
-    Person employees [size];
-
-    int arrSize = readData(employees, size);
-    writeData(employees, arrSize);
+    //vector declaration
+    vector<Person> employees;
+    
+    //readData, reads data to employees in vector and returns vector size
+    int vectSize = readData(employees);
+    //writeData, no changes within the function itself
+    writeData(employees, vectSize);
     
 }

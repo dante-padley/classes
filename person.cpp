@@ -1,9 +1,12 @@
 #include "person.h"
 #include <string>
 
-Person::Person()
+Person::Person(string fName, string lName, float rate, float hours)
 {
-
+    Person::setFirstName(fName);
+    Person::setLastName(lName);
+    Person::setHoursWorked(hours);
+    Person::setPayRate(rate);
 }
 
 string Person::getFirstName() {
