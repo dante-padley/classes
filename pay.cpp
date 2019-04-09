@@ -1,3 +1,6 @@
+//Luccio Padley
+//section 3
+
 #include <fstream>
 #include <string>
 #include <iostream>

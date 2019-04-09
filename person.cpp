@@ -1,3 +1,6 @@
+//Luccio Padley
+//Section 3
+
 #include "person.h"
 #include <string>
 
